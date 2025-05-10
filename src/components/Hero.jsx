@@ -2,7 +2,9 @@ import React from 'react'
 
 const Hero = ({title, imageUrl}) => {
     return (
+
         <div className="hero container" style={{overflowY:"hidden"}}>
+
             <div className="banner">
                 <h1>{title}</h1>
                 <p style={{ textAlign: "justify" }}>

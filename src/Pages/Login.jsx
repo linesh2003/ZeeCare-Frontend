@@ -5,7 +5,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from '../components/Navbar';
+
 import '../Styles/Home.css'
+
 
 const Login = () => {
   // const { isAuthenticated, setIsAuthenticated } = useContext(Context);
@@ -42,7 +44,9 @@ const Login = () => {
 
   return (
     <>
+
     <div style={{backgroundColor:'#e5e5e5'}}>
+
         <Navbar/>
    
     <div className="container form-component login-form">
@@ -99,7 +103,9 @@ const Login = () => {
         </div>
       </form>
     </div>
+
     </div>
+
     </>
   );
 };

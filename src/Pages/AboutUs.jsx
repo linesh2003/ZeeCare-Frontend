@@ -8,6 +8,7 @@ const AboutUs = () => {
   return (
     <>
     <div style={{backgroundColor:'#e5e5e5'}}>
+
     <Navbar/>
       <Hero
         title={"Learn More About Us | ZeeCare Medical Institute"}
@@ -15,6 +16,7 @@ const AboutUs = () => {
       />
       <Biography imageUrl={"/whoweare.png"} />
       </div>
+
     </>
   );
 };

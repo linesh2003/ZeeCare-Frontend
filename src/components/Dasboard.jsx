@@ -6,7 +6,9 @@ import { toast } from "react-toastify";
 import { GoCheckCircleFill } from "react-icons/go";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Sidebar from "./Sidebar";
+
 import '../Styles/Dashboard.css'
+
 
 const Dasboard = () => {
   // const [appointments, setAppointments] = useState([]);
@@ -61,7 +63,9 @@ const Dasboard = () => {
   return (
     <>
     <Sidebar/>
+
     <section className="dashboard page" style={{background:'#3939d9f2;'}}>
+
       <div className="banner">
         <div className="firstBox">
           <img src="/doc.png" alt="Doctor" />

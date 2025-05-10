@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+
 import '../Styles/Dashboard.css'
+
 
 const AppointmentForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -84,9 +86,11 @@ const AppointmentForm = () => {
   };
 
   return (
+
     <div className="container form-component appointment-form" >
       <h2>Appointment</h2>
       <form onSubmit={handleAppointment} style={{width:'1000px'}}>
+
         <div>
           <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
