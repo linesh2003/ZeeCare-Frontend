@@ -1,61 +1,65 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../main";
+// import { Context } from "../main";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { GoCheckCircleFill } from "react-icons/go";
 import { AiFillCloseCircle } from "react-icons/ai";
+import Sidebar from "./Sidebar";
 
 const Dasboard = () => {
-  const [appointments, setAppointments] = useState([]);
+  // const [appointments, setAppointments] = useState([]);
 
-  const { isAuthenticated, admin } = useContext(Context);
+  // const { isAuthenticated, admin } = useContext(Context);
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const { data } = await axios.get(
-          "http://localhost:4000/api/v1/appointment/getall",
-          { withCredentials: true }
-        );
-        console.log("Fetched Appointments:", data); // Debug
-        setAppointments(data.appointments || []);
-      } catch (error) {
-        setAppointments([]);
-        console.error("Error fetching appointments:", error);
-      }
-    };
 
-    fetchAppointments();
-  }, []);
+  // useEffect(() => {
+  //   const fetchAppointments = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         "http://localhost:4000/api/v1/appointment/getall",
+  //         { withCredentials: true }
+  //       );
+  //       console.log("Fetched Appointments:", data); // Debug
+  //       setAppointments(data.appointments || []);
+  //     } catch (error) {
+  //       setAppointments([]);
+  //       console.error("Error fetching appointments:", error);
+  //     }
+  //   };
 
-  const handleUpdateStatus = async (appointmentId, status) => {
-    try {
-      const { data } = await axios.put(
-        `http://localhost:4000/api/v1/appointment/update/${appointmentId}`,
-        { status },
-        { withCredentials: true }
-      );
-      setAppointments((prev) =>
-        prev.map((appointment) =>
-          appointment._id === appointmentId
-            ? { ...appointment, status }
-            : appointment
-        )
-      );
-      toast.success(data.message);
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Failed to update appointment"
-      );
-    }
-  };
+  //   fetchAppointments();
+  // }, []);
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
+  // const handleUpdateStatus = async (appointmentId, status) => {
+  //   try {
+  //     const { data } = await axios.put(
+  //       `http://localhost:4000/api/v1/appointment/update/${appointmentId}`,
+  //       { status },
+  //       { withCredentials: true }
+  //     );
+  //     setAppointments((prev) =>
+  //       prev.map((appointment) =>
+  //         appointment._id === appointmentId
+  //           ? { ...appointment, status }
+  //           : appointment
+  //       )
+  //     );
+  //     toast.success(data.message);
+  //   } catch (error) {
+  //     toast.error(
+  //       error.response?.data?.message || "Failed to update appointment"
+  //     );
+  //   }
+  // };
+
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/login" />;
+  // }
 
   return (
+    <>
+    <Sidebar/>
     <section className="dashboard page">
       <div className="banner">
         <div className="firstBox">
@@ -64,7 +68,8 @@ const Dasboard = () => {
             <div>
               <p>Hello,</p>
               <h5>
-                {admin && `${admin.firstName} ${admin.lastName}`}
+                {/* {admin && `${admin.firstName} ${admin.lastName}`} */}
+                Linesh
               </h5>
             </div>
             <p>
@@ -75,7 +80,7 @@ const Dasboard = () => {
         </div>
         <div className="secondBox">
           <p>Total Appointments</p>
-          <h3>{appointments.length}</h3>
+          {/* <h3>{appointments.length}</h3> */}
         </div>
         <div className="thirdBox">
           <p>Registered Doctors</p>
@@ -97,7 +102,7 @@ const Dasboard = () => {
             </tr>
           </thead>
           <tbody>
-            {appointments.length > 0 ? (
+            {/* {appointments.length > 0 ? (
               appointments.map((appointment) => (
                 <tr key={appointment._id}>
                   <td>{`${appointment.firstName} ${appointment.lastName}`}</td>
@@ -144,11 +149,18 @@ const Dasboard = () => {
                   No Appointments Found!
                 </td>
               </tr>
-            )}
+            )} */}
+            {/* remove it later */}
+            <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>
+                  No Appointments Found!
+                </td>
+              </tr>
           </tbody>
         </table>
       </div>
     </section>
+    </>
   );
 };
 

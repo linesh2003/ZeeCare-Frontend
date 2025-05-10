@@ -8,32 +8,35 @@ import { MdAddModerator } from "react-icons/md";
 import { IoPersonAddSharp } from "react-icons/io5";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Context } from "../main";
+// import { Context } from "../main";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  // const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
-  const handleLogout = async () => {
-    await axios
-      .get("http://localhost:4000/api/v1/user/admin/logout", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        toast.success(res.data.message);
-        setIsAuthenticated(false);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
-  };
-
+  
   const navigateTo = useNavigate();
 
+  const handleLogout = async () => {
+    // await axios
+    //   .get("http://localhost:4000/api/v1/user/admin/logout", {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     toast.success(res.data.message);
+    //     setIsAuthenticated(false);
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.response.data.message);
+    //   });
+  navigateTo("/")
+  };
+
+
   const gotoHomePage = () => {
-    navigateTo("/");
+    navigateTo("/home");
     setShow(!show);
   };
   const gotoDoctorsPage = () => {
@@ -56,7 +59,7 @@ const Sidebar = () => {
   return (
     <>
       <nav
-  style={isAuthenticated ? { display: "none" } : { display: "flex" }}
+  // style={isAuthenticated ? { display: "none" } : { display: "flex" }}
   className={show ? "show sidebar" : "sidebar"}
       >
 
@@ -71,7 +74,7 @@ const Sidebar = () => {
       </nav>
       <div
         className="wrapper"
-        style={!isAuthenticated ? { display: "none" } : { display: "flex" }}
+        // style={!isAuthenticated ? { display: "none" } : { display: "flex" }}
       >
         <GiHamburgerMenu className="hamburger" onClick={() => setShow(!show)} />
       </div>

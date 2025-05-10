@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react'
-// import { Context } from '../main';
-import { useNavigate, Navigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate, Navigate, Link } from "react-router-dom";
+// import { Context } from "../main";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Sidebar from "./Sidebar";
+import "react-toastify/dist/ReactToastify.css";
+import Navbar from '../components/Navbar';
 
 const Login = () => {
   // const { isAuthenticated, setIsAuthenticated } = useContext(Context);
@@ -28,26 +29,23 @@ const Login = () => {
 
       // toast.success(response.data.message);
       // setIsAuthenticated(true);
-      navigateTo("/");
+      navigateTo("/home");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     }
   };
 
   // if (isAuthenticated) {
-  //   return <Navigate to={"/"} />;
+  //   return <Navigate to="/" />;
   // }
 
-
-
-  return(
-  <>
-
-  <Sidebar/>
-<div className="container form-component">
-  <img src="/logo.png" alt="logo" className="logo" />
-  <h1 className="form-title">WELCOME TO ZEECARE</h1>
-  <p>Only Admins are Allowed To Access These Resources</p>
+  return (
+    <>
+        <Navbar/>
+   
+    <div className="container form-component login-form">
+      <h2>Sign In</h2>
+      <p>Please Login To Continue</p>
       <form onSubmit={handleLogin}>
         <input
           type="text"
@@ -67,18 +65,38 @@ const Login = () => {
           value={confirmpassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
+        >
+          <p style={{ marginBottom: 0 }}>Not Registered?</p>
+          <Link
+            to="/register"
+            style={{ textDecoration: "none", color: "#271776ca" }}
+          >
+            Register Now
+          </Link>
+        </div>
+
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             marginTop: "20px",
+    
+            
           }}
         >
-          <button type="submit">Login</button>
+          <button type="submit" style={{cursor:"pointer"}}>Login</button>
         </div>
       </form>
-      </div>
+    </div>
     </>
   );
 };

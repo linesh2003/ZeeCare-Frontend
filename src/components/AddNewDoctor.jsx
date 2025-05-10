@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Context } from "../main";
+// import { Context } from "../main";
 import axios from "axios";
+import Sidebar from "./Sidebar";
 
 const AddNewDoctor = () => {
-  const { isAuthenticated } = useContext(Context);
+  // const { isAuthenticated } = useContext(Context);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -45,23 +46,25 @@ const AddNewDoctor = () => {
       formData.append("gender", gender);
       formData.append("doctorDepartment", doctorDepartment);
       formData.append("docAvatar", docAvatar);
-      await axios
-        .post("http://localhost:4000/api/v1/user/doctor/addnew", formData, {
-          withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-          toast.success(res.data.message);
-        });
+      // await axios
+      //   .post("http://localhost:4000/api/v1/user/doctor/addnew", formData, {
+      //     withCredentials: true,
+      //     headers: { "Content-Type": "multipart/form-data" },
+      //   })
+      //   .then((res) => {
+      //     toast.success(res.data.message);
+      //   });
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
 
-  if (!isAuthenticated) {
-    return <Navigate to={"/login"} />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to={"/login"} />;
+  // }
   return (
+    <>
+    <Sidebar/>
     <section className="page">
       <section className="container add-doctor-form">
         <img src="/logo.png" alt="logo" className="logo"/>
@@ -135,13 +138,13 @@ const AddNewDoctor = () => {
                 }}
               >
                 <option value="">Select Department</option>
-                {departmentsArray.map((depart, index) => {
+                {/* {departmentsArray.map((depart, index) => {
                   return (
                     <option value={depart} key={index}>
                       {depart}
                     </option>
                   );
-                })}
+                })} */}
               </select>
               <button type="submit">Register New Doctor</button>
             </div>
@@ -149,6 +152,7 @@ const AddNewDoctor = () => {
         </form>
       </section>
     </section>
+    </>
   );
 };
 

@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-// import { Context } from "../main";
-import { Navigate, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import axios from "axios";
-import Sidebar from "./Sidebar";
+import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
+// import { Context } from "../main";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
 
-const AddNewAdmin = () => {
-  // const { isAuthenticated } = useContext(Context);
+const Register = () => {
+  // const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -19,38 +19,41 @@ const AddNewAdmin = () => {
 
   const navigateTo = useNavigate();
 
-  const handleAddNewAdmin = async (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
     try {
-      // await axios
-        // .post(
-        //   "http://localhost:4000/api/v1/user/admin/addnew",
-        //   { firstName, lastName, email, phone, nic, dob, gender, password },
-        //   {
-        //     withCredentials: true,
-        //     headers: { "Content-Type": "application/json" },
-        //   }
-        // )
-        // .then((res) => {
-        //   toast.success(res.data.message);
-        // });
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  };
+    //  const response = await axios
+    //     .post(
+    //       "http://localhost:4000/api/v1/user/patient/register",
+    //       { firstName, lastName, email, phone, nic, dob, gender, password },
+    //       {
+    //         withCredentials: true,
+    //         headers: { "Content-Type": "application/json" },
+    //       }
+    //     );
+    //       toast.success(response.data.message);
+    //       setIsAuthenticated(true);
+          navigateTo("/login");
+        } catch (error) { 
+            toast.error(error.response.data.message);
+        }
+    };
 
-  // if (!isAuthenticated) {
-  //   return <Navigate to={"/login"} />;
+  // if (isAuthenticated) {
+  //   return <Navigate to={"/"} />;
   // }
 
   return (
     <>
-    <Sidebar/>
-    <section className="page">
-      <section className="container form-component add-admin-form">
-      <img src="/logo.png" alt="logo" className="logo"/>
-        <h1 className="form-title">ADD NEW ADMIN</h1>
-        <form onSubmit={handleAddNewAdmin}>
+    <Navbar/>
+      <div className="container form-component register-form">
+        <h2>Sign Up</h2>
+        <p>Please Sign Up To Continue</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat culpa
+          voluptas expedita itaque ex, totam ad quod error?
+        </p>
+        <form onSubmit={handleRegistration}>
           <div>
             <input
               type="text"
@@ -106,14 +109,28 @@ const AddNewAdmin = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div
+            style={{
+              gap: "10px",
+              justifyContent: "flex-end",
+              flexDirection: "row",
+            }}
+          >
+            <p style={{ marginBottom: 0 }}>Already Registered?</p>
+            <Link
+              to={"/login"}
+              style={{ textDecoration: "none", color: "#271776ca" }}
+            >
+              Login Now
+            </Link>
+          </div>
           <div style={{ justifyContent: "center", alignItems: "center" }}>
-            <button type="submit">ADD NEW ADMIN</button>
+            <button type="submit">Register</button>
           </div>
         </form>
-      </section>
-    </section>
+      </div>
     </>
   );
 };
 
-export default AddNewAdmin;
+export default Register;
