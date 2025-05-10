@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 // import { Context } from "../main";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+import '../Styles/Dashboard.css'
 
 const AddNewDoctor = () => {
   // const { isAuthenticated } = useContext(Context);

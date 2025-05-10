@@ -45,6 +45,7 @@ const Register = () => {
 
   return (
     <>
+    <div style={{backgroundColor:'#e5e5e5'}}>
     <Navbar/>
       <div className="container form-component register-form">
         <h2>Sign Up</h2>
@@ -128,6 +129,7 @@ const Register = () => {
             <button type="submit">Register</button>
           </div>
         </form>
+      </div>
       </div>
     </>
   );
